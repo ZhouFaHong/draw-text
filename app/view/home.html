@@ -2,18 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.1">
     <title>占位图</title>
     <style>
         body {
             background: black;
+            margin: 0px;
         }
-
+        /* img{
+            margin: auto;
+            -webkit-user-select: none;
+        } */
     </style>
 </head>
 <body >
-    
-    <img src='<%=url%>'></img>
+    <img style="-webkit-user-select:none; display:block; margin:auto; padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);" src='<%=url%>'>>
     
 </body>
 </html>
