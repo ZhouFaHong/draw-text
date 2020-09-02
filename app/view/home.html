@@ -6,8 +6,10 @@
     <title>占位图</title>
     <style>
         body {
-            background: black;
             margin: 0px;
+        }
+        p,input{
+            margin-left: 5%;
         }
         /* img{
             margin: auto;
@@ -16,7 +18,18 @@
     </style>
 </head>
 <body >
-    <img style="-webkit-user-select:none; display:block; margin:auto; padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);" src='<%=url%>'>>
+    <p>示例：</p>
+    <p>http://localhost:7001/drawtext/100x100?text=%E5%A4%B4%E5%83%8F&fg=f44336&bg=d9ead3</p>
+    <p>链接：http://localhost:7001/drawtext/100x100</p>
+    <p>文本参数：text</p>
+    <p>背景参数：bg</p>
+    <p>字体参数：fg</p>
+    <input type="button" value="生成图片" onclick="go()">
+    <script>
+        function go() {
+            window.location.href="/drawtext/100x100";
+        }
+    </script>
     
 </body>
 </html>

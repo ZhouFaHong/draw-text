@@ -4,19 +4,25 @@ const { createCanvas } = require('canvas');
 
 const Service = require('egg').Service;
 
-class HomeService extends Service {
+class DrawService extends Service {
   async drawText(styles) {
 
-    const { text, fg, bg, width, height } = styles;
+    // 设定默认值
+    const { fg: fontBg = '666666', bg: background = 'cccccc', width_height, text: source = width_height } = styles;
+    const l = width_height.split('x');
+    const width = parseFloat(l[0]) || 200;
+    const height = parseFloat(l[1]) || 200;
+    console.log('width  -------', width);
+    console.log('height -------', height);
     const fontStyle = 'normal';
     const fontVariant = 'normal';
     const fontWeight = 'normal';
     let fontSize = 13;
-    if (text.length === 1) {
+    if (source.length === 1) {
       fontSize = 35;
-    } else if (text.length === 2) {
+    } else if (source.length === 2) {
       fontSize = 30;
-    } else if (text.length === 3) {
+    } else if (source.length === 3) {
       fontSize = 25;
     }
     const lineHeight = fontSize || 13;
@@ -24,7 +30,7 @@ class HomeService extends Service {
     const textAlign = 'left';
     const canvas = createCanvas(width, height);
     const ctx = canvas.getContext('2d');
-    const textArray = ('' + text).split('').map(item => {
+    const textArray = ('' + source).split('').map(item => {
       return {
         value: item,
         width: ctx.measureText(item).width,
@@ -71,13 +77,13 @@ class HomeService extends Service {
 
     // 这里画的是背景
     ctx.beginPath();
-    ctx.fillStyle = '#' + bg;
+    ctx.fillStyle = '#' + background;
     ctx.fillRect(0, 0, width, height);
     // 画字体
     ctx.beginPath();
     ctx.font = `${fontStyle} ${fontVariant} ${fontWeight} ${fontSize}px ${lineHeight}px ${fontFamily}`;
     ctx.textBaseline = 'bottom';
-    ctx.fillStyle = '#' + fg;
+    ctx.fillStyle = '#' + fontBg;
     ctx.textAlign = textAlign;
 
     // 总高
@@ -97,4 +103,4 @@ class HomeService extends Service {
   }
 }
 
-module.exports = HomeService;
+module.exports = DrawService;

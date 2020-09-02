@@ -5,5 +5,6 @@
  */
 module.exports = app => {
   const { router, controller } = app;
-  router.get('/drawtext/:width_height', controller.home.index);
+  router.get('/', controller.home.index);
+  router.get('/drawtext/:width_height', controller.draw.index);
 };
